@@ -50,10 +50,10 @@ export default {
       return feeds[this.feed].pages
     },
     pageData() {
-      return this.$store.state.feeds[this.feed][this.page]
+      return this.$state.feeds[this.feed][this.page]
     },
     displayedItems() {
-      return this.pageData.map(id => this.$store.state.items[id])
+      return this.pageData.map(id => this.$state.items[id])
     },
     loading() {
       return this.displayedItems.length === 0
@@ -64,9 +64,10 @@ export default {
     page: 'pageChanged'
   },
 
-  fetch({ store, params: { feed, page = 1 } }) {
+  fetch({ $actions, params: { feed, page = 1 } }) {
     page = Number(page) || 1
-    return store.dispatch('FETCH_FEED', { feed, page })
+    console.log('{ feed, page }', { feed, page })
+    return $actions.fetchFeed({ feed, page })
   },
 
   head() {
@@ -87,13 +88,11 @@ export default {
       }
 
       // Prefetch next page
-      this.$store
-        .dispatch('FETCH_FEED', {
-          feed: this.feed,
-          page: this.page + 1,
-          prefetch: true
-        })
-        .catch(() => {})
+      this.$actions.fetchFeed({
+        feed: this.feed,
+        page: this.page + 1,
+        prefetch: true
+      })
 
       this.transition =
         from === -1 ? null : to > from ? 'slide-left' : 'slide-right'

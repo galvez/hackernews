@@ -34,7 +34,7 @@ export default {
 
   computed: {
     user() {
-      return this.$store.state.users[this.$route.params.id]
+      return this.$state.users[this.$route.params.id]
     }
   },
 
@@ -44,8 +44,8 @@ export default {
     }
   },
 
-  fetch({ store, route: { params: { id } } }) {
-    return store.dispatch('FETCH_USER', { id })
+  fetch({ $actions, route: { params: { id } } }) {
+    return $actions.fetchUser({ id })
   }
 }
 </script>

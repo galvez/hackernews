@@ -48,12 +48,12 @@ export default {
       return this.$route.params.id
     },
     item() {
-      return this.$store.state.items[this.id]
+      return this.$state.items[this.id]
     }
   },
 
-  fetch({ store, params: { id } }) {
-    return store.dispatch('FETCH_ITEM', { id })
+  fetch({ $actions, params: { id } }) {
+    return $actions.fetchItem({ id })
   },
 
   methods: {
