@@ -1,33 +1,9 @@
 import Vue from 'vue'
-
-import { validFeeds } from '~/common/api'
-import { lazy } from '~/common/utils'
 import { CancelToken } from 'axios'
 
+import { lazy } from '~/common/utils'
+
 // Learn more on https://nuxtjs.org/guide/vuex-store
-
-// =================================================
-// State
-// =================================================
-export const state = () => {
-  const s = {
-    items: {
-      /* [id: number]: Item */
-    },
-    users: {
-      /* [id: string]: User */
-    },
-    feeds: {
-      /* [page: number] : [ [id: number] ] */
-    }
-  }
-
-  validFeeds.forEach((feed) => {
-    s.feeds[feed] = {}
-  })
-
-  return s
-}
 
 // =================================================
 // Mutations

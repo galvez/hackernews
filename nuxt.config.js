@@ -25,9 +25,10 @@ export default {
     start_url: '/news'
   },
 
-  devModules: [
+  buildModules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'vue-stator/nuxt'
   ],
 
   axios: {
